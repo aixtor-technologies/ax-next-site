@@ -1,0 +1,108 @@
+/* ================= GILROY ================= */
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("/assets/fonts/Gilroy-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("/assets/fonts/Gilroy-LightItalic.ttf") format("truetype");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("/assets/fonts/Gilroy-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("/assets/fonts/Gilroy-RegularItalic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("/assets/fonts/Gilroy-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("/assets/fonts/Gilroy-MediumItalic.ttf") format("truetype");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("/assets/fonts/Gilroy-Semibold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("/assets/fonts/Gilroy-SemiboldItalic.ttf") format("truetype");
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ================= FONT AWESOME ================= */
+
+@font-face {
+  font-family: "Font Awesome 6 Brands";
+  src: url("/assets/webfonts/fa-brands-400.woff2") format("woff2"),
+       url("/assets/webfonts/fa-brands-400.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Font Awesome 6 Free";
+  src: url("/assets/webfonts/fa-regular-400.woff2") format("woff2"),
+       url("/assets/webfonts/fa-regular-400.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Font Awesome 6 Free";
+  src: url("/assets/webfonts/fa-solid-900.woff2") format("woff2"),
+       url("/assets/webfonts/fa-solid-900.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ================= SLICK SLIDER ================= */
+
+@font-face {
+  font-family: "slick";
+  src: url("/assets/fonts/slick.eot");
+  src: url("/assets/fonts/slick.eot?#iefix") format("embedded-opentype"),
+       url("/assets/fonts/slick.woff") format("woff"),
+       url("/assets/fonts/slick.ttf") format("truetype"),
+       url("/assets/fonts/slick.svg#slick") format("svg");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
