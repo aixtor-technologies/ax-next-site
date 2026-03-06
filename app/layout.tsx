@@ -1,5 +1,7 @@
+import type { ReactNode } from "react";
 import Header from "@/app/common-components/Header";
 import Footer from "@/app/common-components/Footer";
+import "./globals.css";
 import "../styles/fonts.css";
 import "../styles/bootstrap.min.css";
 import "../styles/all.min.css";
@@ -14,16 +16,14 @@ export const metadata = {
 
 export default function RootLayout({
   children,
-}: {
-  children: React.ReactNode;
-}) {
+}: Readonly<{
+  children: ReactNode;
+}>) {
   return (
     <html lang="en">
-      <body style={{ margin: 0, fontFamily: "Arial, sans-serif" }}>
+      <body>
         <Header />
-
-        <main style={{ padding: "40px" }}>{children}</main>
-
+        <main style={{ padding: "0px!important" }}>{children}</main>
         <Footer />
       </body>
     </html>
