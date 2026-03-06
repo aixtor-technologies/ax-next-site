@@ -4,11 +4,13 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
+
+
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   const [expandedSection, setExpandedSection] = useState<string | null>(null);
   const API_BASE_URL = process.env.NEXT_PUBLIC_WP_API_URL;
-  const [homePage, setHomePage] = useState([]);
+  const [homePage, setHomePage] = useState({});
   const [loading, setLoading] = useState(true);
   
   useEffect(() => {
@@ -19,10 +21,7 @@ const Footer = () => {
           if (!res.ok) throw new Error("Failed to fetch home page data");
   
           const data = await res.json();
-  
-          console.log("Home Page Data:", data);
-  
-          setHomePage(data.items || data);
+          setHomePage(data || []);
         } catch (error) {
           console.error("Home Page API Error:", error);
         } finally {
@@ -59,40 +58,7 @@ const Footer = () => {
               </Link>
             </div>
 
-            {/* Address Section */}
-            <address>
-              {homePage?.footer_section?.india_flag && (
-                <Image
-                  src={homePage.footer_section.india_flag.url}
-                  alt={
-                    homePage.footer_section.india_flag.alt || "India Flag"
-                  }
-                  width={24}
-                  height={16}
-                />
-              )}
-              {homePage?.footer_section?.india_address && (
-                <div className="full_address">
-                  {homePage.footer_section.india_address}
-                </div>
-              )}
-            </address>
-
-            <address>
-              {homePage?.footer_section?.usa_flag && (
-                <Image
-                  src={homePage.footer_section.usa_flag.url}
-                  alt={homePage.footer_section.usa_flag.alt || "USA Flag"}
-                  width={24}
-                  height={16}
-                />
-              )}
-              {homePage?.footer_section?.usa_address && (
-                <div className="full_address">
-                  {homePage.footer_section.usa_address}
-                </div>
-              )}
-            </address>
+            
           </div>
 
           {/* RIGHT SECTION */}
