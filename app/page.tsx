@@ -1,5 +1,6 @@
 "use client"
 import { useEffect, useState } from "react";
+import HomeBanner from "@/app/home/homeBanner";
 
 export default function Home() {
   const API_BASE_URL = process.env.NEXT_PUBLIC_WP_API_URL;
@@ -25,7 +26,7 @@ export default function Home() {
   }, []);
   return (
     <div>
-      <h1>Welcome to Our Website 🚀</h1>
+      <HomeBanner homePage={homePage} />
     </div>
   );
 }
