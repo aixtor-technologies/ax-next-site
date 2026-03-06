@@ -13,24 +13,24 @@ const Footer = () => {
   const [homePage, setHomePage] = useState({});
   const [loading, setLoading] = useState(true);
   
-  useEffect(() => {
-      const fetchHomePage = async () => {
-        try {
-          const res = await fetch(`${API_BASE_URL}/wp/v2/home-page`);
+  // useEffect(() => {
+  //     const fetchHomePage = async () => {
+  //       try {
+  //         const res = await fetch(`${API_BASE_URL}/wp/v2/home-page`);
   
-          if (!res.ok) throw new Error("Failed to fetch home page data");
+  //         if (!res.ok) throw new Error("Failed to fetch home page data");
   
-          const data = await res.json();
-          setHomePage(data || []);
-        } catch (error) {
-          console.error("Home Page API Error:", error);
-        } finally {
-          setLoading(false);
-        }
-      };
+  //         const data = await res.json();
+  //         setHomePage(data || []);
+  //       } catch (error) {
+  //         console.error("Home Page API Error:", error);
+  //       } finally {
+  //         setLoading(false);
+  //       }
+  //     };
   
-      fetchHomePage();
-    }, []);
+  //     fetchHomePage();
+  //   }, []);
 
   const toggleSection = (section: string) => {
     if (window.innerWidth > 991) return; // only mobile
@@ -42,135 +42,144 @@ const Footer = () => {
 
   return (
     <footer id="footer">
-      <div className="container">
-        <div className="row">
-          {/* LEFT SECTION */}
-          <div className="col-lg-4">
-            <div className="footer_logo">
-              <Link href="/" title="Aixtor Technologies">
-                <Image
-                  src="/assets/images/aixtor-logo.svg"
-                  alt="Aixtor Technologies"
-                  width={143}
-                  height={65}
-                  priority
-                />
-              </Link>
-            </div>
-
-            
-          </div>
-
-          {/* RIGHT SECTION */}
-          <div className="col-lg-8">
+          <div className="container">
             <div className="row">
-
-              {/* SERVICES */}
-              <div className="col-lg-4 col-md-4 col-sm-6">
-                <div className="footer_navbar">
-                  <h4 onClick={() => toggleSection("services")}>
-                    Services
-                  </h4>
-                  <ul className={isExpanded("services")}>
-                    <li>
-                      <Link href="/services/enterprise-portal-development/">
-                        Enterprise Portal Development
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/services/liferay-consulting-services/">
-                        Liferay Consulting & Development
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/services/devops/">DevOps</Link>
-                    </li>
-                    <li>
-                      <Link href="/services/ai-and-ml/">AI and ML</Link>
-                    </li>
-                  </ul>
+              <div className="col-lg-4">
+                <div className="footer_logo">
+                  <a href="/" title="Aixtor Technologies">
+                    <img src="/assets/images/aixtor-logo.svg"
+                      alt="Aixtor Technologies"
+                      width={143}
+                      height={65}
+                      loading="eager"
+                    />
+                  </a>
                 </div>
+                <address>
+                  <img loading="eager"
+                      src="/assets/images/IndianFlag.png.webp"
+                      className="countryFlag"
+                      alt="Flag-India"
+                    />
+                  <div className="full_address">1305-06, Zion Z1, Sindhu Bhavan Road, Ahmedabad, India – 380054</div>
+                </address>
+                <address>
+                  <img loading="eager"
+                      src="/assets/images/UsFlag.png.webp"
+                      className="countryFlag"
+                      alt="UsFlag"
+                    />
+                  <div className="full_address">Silicon Valley, California - 94542, USA</div>
+                </address>
+
+                <div className="contact_details">
+                  <div className="emailcontact">
+                    <div className="contact_details_inner">
+                      <img loading="eager"
+                          src="/assets/images/Home_icon_Email.svg"
+                          alt="Ax Email Icon"
+                        />
+                      <a href="mailto:connect@aixtor.com" target="_blank" className="full_address" title="Mail">
+                          connect@aixtor.com
+                      </a>
+                    </div>
+                  </div>
+                  <div className="telcontact">
+                    <div className="contact_details_inner">
+                      <img loading="eager"
+                          src="/assets/images/Home_icon_Phone-_call.svg"
+                          alt="Ax Phone Icon"
+                        />
+                      <a href="tel:+91 7948940009" target="_blank" className="full_address" title="Tel">
+                          +91 7948940009
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div className="partner_details">
+                    <img loading="eager"
+                      src="/assets/images/silver_solution_partner_logo.svg"
+                          alt="silver_solution_partner_logo"
+                      width={266}
+                      height={43}
+                    />
+                  </div>
               </div>
 
-              {/* SOLUTIONS */}
-              <div className="col-lg-4 col-md-4 col-sm-6">
-                <div className="footer_navbar">
-                  <h4 onClick={() => toggleSection("solutions")}>
-                    Solutions
-                  </h4>
-                  <ul className={isExpanded("solutions")}>
-                    <li>
-                      <Link href="/solutions/intranet-portal/">
-                        Intranet Portal
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/solutions/enterprise-websites/">
-                        Enterprise Websites
-                      </Link>
-                    </li>
-                  </ul>
+              {/* Services + Solutions */}
+              <div className="col-lg-8">
+                <div className="row">
+                    <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                      <div className="footer_navbar">
+                        <h4>Services</h4>
+                        <ul>
+                          <li><Link href="/services/enterprise-portal-development/"  title="Enterprise Portal Development">Enterprise Portal Development</Link></li>
+                          <li><Link href="/services/liferay-consulting-services/"  title="Liferay Consulting &amp; Development">Liferay Consulting &amp; Development</Link></li>
+                          <li><Link href="/services/liferay-upgrade/"  title="Liferay Upgrade">Liferay Upgrade</Link></li>
+                          <li><Link href="/services/liferay-migration-services/"  title="Liferay Migration">Liferay Migration</Link></li>
+                          <li><Link href="/services/web-portal-development/"  title="Web Portal Development">Web Portal Development</Link></li>
+                          <li><Link href="/services/ui-ux-design/"  title="UI/UX Design">UI/UX Design</Link></li>
+                          <li><Link href="/services/rpa-development-services/"  title="RPA Development ">RPA Development </Link></li>
+                          <li><Link href="/services/drupal-development/"  title="Drupal Development">Drupal Development</Link></li>
+                          <li><Link href="/services/qa-automation-testing-services/"  title="QA Automation Testing">QA Automation Testing</Link></li>
+                          <li><Link href="/services/qa-manual-testing/"  title="QA Manual Testing">QA Manual Testing</Link></li>
+                          <li><Link href="/services/bi-and-data-analytics-services/"  title="BI and Data Analytics Services">BI and Data Analytics Services</Link></li>
+                          <li><Link href="/services/devops/"  title="DevOps as a Service">DevOps as a Service</Link></li>
+                          <li><Link href="/services/ai-and-ml/"  title="AI and ML">AI and ML</Link></li>
+                          <li><Link href="/services/performance-tuning/"  title="Performance Tuning ">Performance Tuning </Link></li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                      <div className="footer_navbar">
+                        <h4>Solutions</h4>
+                        <ul>
+                          <li><Link href="/solutions/intranet-portal/"  title="Intranet Portal">Intranet Portal</Link></li>
+                          <li><Link href="/solutions/customer-self-service-portal/"  title="Customer Self-Service Portal">Customer Self-Service Portal</Link></li>
+                          <li><Link href="/solutions/partner-portal-solution/"  title="Partner Management Portal">Partner Management Portal</Link></li>
+                          <li><Link href="/solutions/supplier-and-vendor-portal/"  title="Supplier and Vendor Portal">Supplier and Vendor Portal</Link></li>
+                          <li><Link href="/solutions/e-commerce-portal-development/"  title="E-Commerce Portal">E-Commerce Portal</Link></li>
+                          <li><Link href="/solutions/enterprise-websites/"  title="Enterprise Websites">Enterprise Websites</Link></li>
+                          <li><Link href="/solutions/enterprise-content-management-solution/"  title="Enterprise Content Management">Enterprise Content Management</Link></li>
+                        </ul>
+                      </div>
+                    </div>
+                  <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div className="footer_navbar">
+                      <h4>Company</h4>
+                      <ul>
+                        <li><Link href="/company/about-us/">About</Link></li>
+                        <li><Link href="/company/careers/">Career</Link></li>
+                      </ul>
+                    </div>
+                    <div className="footer_navbar">
+                      <h4>Resources</h4>
+                      <ul>
+                        <li><Link href="/case-study/">Case study</Link></li>
+                        <li><Link href="/blog/">Blog</Link></li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
               </div>
-
-              {/* COMPANY */}
-              <div className="col-lg-4 col-md-4 col-sm-6">
-                <div className="footer_navbar">
-                  <h4 onClick={() => toggleSection("company")}>
-                    Company
-                  </h4>
-                  <ul className={isExpanded("company")}>
-                    <li>
-                      <Link href="/company/about-us/">About</Link>
-                    </li>
-                    <li>
-                      <Link href="/company/careers/">Career</Link>
-                    </li>
-                  </ul>
-                </div>
+            </div>
+            <div className="footer_end">
+              <div className="social_list">
+                <ul>
+                  <li><a href="https://www.linkedin.com/company/aixtor/" className="trans social_icon" title="Linkedin"><i className="fa-brands fa-linkedin-in"></i></a></li>
+                  <li><a href="https://x.com/aixtor" className="trans social_icon" title="Twitter"><i className="fa-brands fa-x-twitter"></i></a></li>
+                  <li><a href="https://www.instagram.com/aixtor_technologies/" className="trans social_icon" title="Instagram"><i className="fa-brands fa-instagram"></i></a></li>
+                  <li><a href="https://www.facebook.com/aixtor.technologies" className="trans social_icon" title="Facebook"><i className="fa-brands fa-facebook-f"></i></a></li>
+                </ul>
               </div>
-
+              <div className="copyright_text">
+                &copy; {currentYear} Aixtor Technologies LLP. All rights reserved
+                <span><a href="/privacy-policy/"> Privacy Policy </a></span>
+                <span><a href="/cookie-policy/"> Cookie Policy </a></span>
+              </div>
             </div>
           </div>
-        </div>
-
-        {/* Footer Bottom */}
-        <div className="footer_end">
-          <div className="social_list">
-            <ul>
-              <li>
-                <a
-                  href="https://www.linkedin.com/company/aixtor/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Linkedin
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://x.com/aixtor"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Twitter
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <div className="copyright_text">
-            &copy; {currentYear} Aixtor Technologies LLP. All rights reserved
-            <span>
-              <Link href="/privacy-policy/"> Privacy Policy </Link>
-            </span>
-            <span>
-              <Link href="/cookie-policy/"> Cookie Policy </Link>
-            </span>
-          </div>
-        </div>
-      </div>
-    </footer>
+        </footer>
   );
 };
 
