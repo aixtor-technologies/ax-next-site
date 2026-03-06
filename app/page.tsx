@@ -1,32 +1,158 @@
-"use client"
-import { useEffect, useState } from "react";
-import HomeBanner from "@/app/home/homeBanner";
+import HomePageClient from "@/app/home/HomePageClient";
 
-export default function Home() {
-  const API_BASE_URL = process.env.NEXT_PUBLIC_WP_API_URL;
-  const [homePage, setHomePage] = useState({});
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-      const fetchHomePage = async () => {
-        try {
-          const res = await fetch(`${API_BASE_URL}/wp/v2/home-page`);
-  
-          if (!res.ok) throw new Error("Failed to fetch home page data");
-  
-          const data = await res.json();
-          setHomePage(data || []);
-        } catch (error) {
-          console.error("Home Page API Error:", error);
-        } finally {
-          setLoading(false);
-        }
-      };
-  
-      fetchHomePage();
-  }, []);
+type ApiImage = {
+  url?: string;
+  alt?: string;
+};
+
+type HomePageData = {
+  banner_section?: {
+    description?: string;
+    cta_title?: string;
+  };
+  industries_section?: {
+    heading?: string;
+    description?: string;
+    industries?: Array<{
+      industry_name?: string;
+      industry_slug?: string;
+      icon?: ApiImage;
+      image?: ApiImage;
+    }>;
+  };
+  success_stories_section?: {
+    heading?: string;
+    description?: string;
+    success_list?: Array<{
+      number?: string;
+      success_name?: string;
+    }>;
+  };
+  start_project_section?: {
+    heading?: string;
+    description?: string;
+    cta_title?: string;
+  };
+};
+
+type ServiceItem = {
+  id: number;
+  slug: string;
+  acf?: {
+    home_page_fields?: {
+      is_display_home_page?: boolean;
+      icon?: ApiImage;
+      title?: string;
+      description?: string;
+    };
+  };
+};
+
+type SolutionItem = {
+  id: number;
+  slug: string;
+  acf?: {
+    home_page?: {
+      title?: string;
+      description?: string;
+      icon?: ApiImage;
+    };
+  };
+};
+
+type CaseStudyItem = {
+  id: number;
+  slug: string;
+  acf?: {
+    home_page?: {
+      title?: string;
+      description?: string;
+      image?: ApiImage;
+    };
+  };
+};
+
+type MainSection = {
+  home_page?: {
+    title?: string;
+    description?: string;
+    cta_title?: string;
+  };
+};
+
+async function fetchWordPress<T>(
+  endpoint: string,
+  searchParams?: Record<string, string | number>,
+): Promise<T> {
+  const baseUrl = process.env.NEXT_PUBLIC_WP_API_URL;
+
+  if (!baseUrl) {
+    throw new Error("NEXT_PUBLIC_WP_API_URL is not configured.");
+  }
+
+  const normalizedBaseUrl = baseUrl.replace(/\/$/, "");
+  const url = new URL(`${normalizedBaseUrl}/wp/v2/${endpoint}`);
+
+  Object.entries(searchParams ?? {}).forEach(([key, value]) => {
+    url.searchParams.set(key, String(value));
+  });
+
+  const response = await fetch(url.toString(), { cache: "no-store" });
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch ${endpoint}: ${response.status}`);
+  }
+
+  return response.json();
+}
+
+async function safeFetchWordPress<T>(
+  endpoint: string,
+  fallback: T,
+  searchParams?: Record<string, string | number>,
+): Promise<T> {
+  try {
+    return await fetchWordPress<T>(endpoint, searchParams);
+  } catch (error) {
+    console.error(`Home page fetch failed for "${endpoint}"`, error);
+    return fallback;
+  }
+}
+
+export default async function Home() {
+  const [
+    homePageResponse,
+    servicesResponse,
+    serviceMainResponse,
+    solutionsResponse,
+    solutionMainResponse,
+    caseStudiesResponse,
+    caseStudyMainResponse,
+  ] = await Promise.all([
+    safeFetchWordPress<Array<{ acf?: HomePageData }>>("home-page", []),
+    safeFetchWordPress<ServiceItem[]>("services", [], { per_page: 10 }),
+    safeFetchWordPress<Array<{ acf?: MainSection }>>("service-main-sections", [], {
+      slug: "main-section",
+    }),
+    safeFetchWordPress<SolutionItem[]>("solutions", [], { per_page: 10 }),
+    safeFetchWordPress<Array<{ acf?: MainSection }>>("solution-main-sections", [], {
+      slug: "main-section",
+    }),
+    safeFetchWordPress<CaseStudyItem[]>("case-studies", [], { per_page: 5 }),
+    safeFetchWordPress<Array<{ acf?: MainSection }>>("case-studies-main-sections", [], {
+      slug: "main-section",
+    }),
+  ]);
+
   return (
-    <div>
-      <HomeBanner homePage={homePage} />
-    </div>
+    <HomePageClient
+      homePage={homePageResponse?.[0]?.acf ?? {}}
+      services={servicesResponse ?? []}
+      serviceMainSection={serviceMainResponse?.[0]?.acf ?? {}}
+      solutions={solutionsResponse ?? []}
+      solutionMainSection={solutionMainResponse?.[0]?.acf ?? {}}
+      caseStudies={caseStudiesResponse ?? []}
+      caseStudyMainSection={caseStudyMainResponse?.[0]?.acf ?? {}}
+    />
   );
 }
