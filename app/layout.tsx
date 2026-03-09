@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { safeFetchMenu } from "@/lib/api";
 import Header from "@/app/common-components/Header";
 import Footer from "@/app/common-components/Footer";
 import "./globals.css";
@@ -14,15 +15,17 @@ export const metadata = {
   description: "Next.js + WordPress CMS Website",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: ReactNode;
 }>) {
+  const menu = await safeFetchMenu([]);
+
   return (
     <html lang="en">
       <body>
-        <Header />
+        <Header menu={menu} />
         <main style={{ padding: "0px!important" }}>{children}</main>
         <Footer />
       </body>

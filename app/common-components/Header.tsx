@@ -4,56 +4,20 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import type { MenuItem } from "@/lib/api";
 
-interface ChildItem {
-  ID: number;
-  title: string;
-  slug: string;
+interface HeaderProps {
+  menu?: MenuItem[];
 }
 
-interface MenuItem {
-  ID: number;
-  title: string;
-  url: string;
-  slug: string;
-  child_items?: ChildItem[];
-}
-
-const Header = () => {
+const Header = ({ menu: menuProp = [] }: HeaderProps) => {
   const pathname = usePathname();
+  const menu = menuProp;
 
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchBoxVisible, setIsSearchBoxVisible] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const [menu, setMenu] = useState<MenuItem[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  const API_BASE_URL = process.env.NEXT_PUBLIC_WP_API_URL;
-
-  /* ================= FETCH MENU ================= */
-
-  useEffect(() => {
-    const fetchMenu = async () => {
-      try {
-        const res = await fetch(`${API_BASE_URL}/menus/v1/menus/main_menu`);
-
-        if (!res.ok) throw new Error("Failed to fetch menu");
-
-        const data = await res.json();
-
-        console.log("Menu Data:", data);
-
-        setMenu(data.items || data);
-      } catch (error) {
-        console.error("Menu API Error:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchMenu();
-  }, []);
 
   /* ================= SCROLL EFFECT ================= */
 
