@@ -117,7 +117,7 @@ const Header = ({ menu: menuProp = [] }: HeaderProps) => {
 
           {/* MENU */}
 
-          <div className={`centerbar-header ${isMobileMenuOpen ? "show" : ""}`}>
+          <div className={`centerbar-header ${isMobileMenuOpen ? "show" : ""}`} id="navabarWrap">
             <ul className="navbar-nav">
               {menu.map((item) => {
 
@@ -127,7 +127,7 @@ const Header = ({ menu: menuProp = [] }: HeaderProps) => {
                 const isActive = pathname === itemPath;
 
                 const customClassName = isActive
-                  ? "nav-link active"
+                  ? "nav-link trans active"
                   : "nav-link";
 
                 return (
@@ -157,7 +157,16 @@ const Header = ({ menu: menuProp = [] }: HeaderProps) => {
                                     className="nav_item"
                                     onClick={closeMobileNavbar}
                                   >
-                                    {child.title}
+                                    {child.thumbnail_src && (
+                                    <div className="nav_item_icon">
+                                    <img width={20} height={20} src={child.thumbnail_src} alt="" loading="eager" />
+                                    </div>
+                                    )}
+                                    {child.title && (
+                                    <div className="nav_item_details">
+                                    <div className="title">{child.title}</div>
+                                    </div>
+                                    )}
                                   </Link>
                                 </li>
                               ))}
@@ -199,23 +208,30 @@ const Header = ({ menu: menuProp = [] }: HeaderProps) => {
 
               {isSearchBoxVisible && (
                 <div className="SearchBox">
-                  <input
-                    type="text"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Search content"
-                  />
+                  <div className="form-group">
+                    <button className="btn searchBtn"><img src="/assets/images/searchIcon.svg" loading="eager" alt="Search Icon" /></button>
+                    <input
+                      type="text"
+                      className="form-control"
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      placeholder="Search content"
+                    />
 
-                  {searchQuery && (
-                    <button onClick={() => setSearchQuery("")}>
-                      <Image
-                        src="/assets/images/searchClose.svg"
-                        width={20}
-                        height={20}
-                        alt="Close"
-                      />
-                    </button>
-                  )}
+                    {searchQuery && (
+                      <button className="btn closeBtn" onClick={() => setSearchQuery("")}>
+                        <Image
+                          src="/assets/images/searchClose.svg"
+                          width={20}
+                          height={20}
+                          alt="Close"
+                        />
+                      </button>
+                    )}
+                  </div>
+                  <button className="btn closeOverlayBtn" onClick={toggleSearchBox}>
+                        <img loading="eager" width={16} height={17} src="/assets/images/searchClose.svg" alt="Close Icon" />
+                      </button>
                 </div>
               )}
             </div>
@@ -224,8 +240,13 @@ const Header = ({ menu: menuProp = [] }: HeaderProps) => {
               className="navbar-toggler"
               onClick={mobileTogglebar}
             >
-              ☰
+              <span className="navbar-toggler-icon"></span>
             </button>
+            <div className="rightbar-header">
+              <Link href="/contact/" className="outline-btn trans" title="Contact Us">
+                <span className="button-content">Contact Us</span>
+              </Link>
+            </div>
           </div>
         </div>
       </nav>

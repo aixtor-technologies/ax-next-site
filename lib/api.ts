@@ -66,6 +66,7 @@ export interface MenuChildItem {
   ID: number;
   title: string;
   slug: string;
+  thumbnail_src?: string;
 }
 
 export interface MenuItem {
