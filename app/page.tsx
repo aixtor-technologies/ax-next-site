@@ -1,3 +1,4 @@
+import { safeFetchWordPress } from "@/lib/api";
 import HomePageClient from "@/app/home/HomePageClient";
 
 type ApiImage = {
@@ -79,45 +80,6 @@ type MainSection = {
     cta_title?: string;
   };
 };
-
-async function fetchWordPress<T>(
-  endpoint: string,
-  searchParams?: Record<string, string | number>,
-): Promise<T> {
-  const baseUrl = process.env.NEXT_PUBLIC_WP_API_URL;
-
-  if (!baseUrl) {
-    throw new Error("NEXT_PUBLIC_WP_API_URL is not configured.");
-  }
-
-  const normalizedBaseUrl = baseUrl.replace(/\/$/, "");
-  const url = new URL(`${normalizedBaseUrl}/wp/v2/${endpoint}`);
-
-  Object.entries(searchParams ?? {}).forEach(([key, value]) => {
-    url.searchParams.set(key, String(value));
-  });
-
-  const response = await fetch(url.toString(), { cache: "no-store" });
-
-  if (!response.ok) {
-    throw new Error(`Failed to fetch ${endpoint}: ${response.status}`);
-  }
-
-  return response.json();
-}
-
-async function safeFetchWordPress<T>(
-  endpoint: string,
-  fallback: T,
-  searchParams?: Record<string, string | number>,
-): Promise<T> {
-  try {
-    return await fetchWordPress<T>(endpoint, searchParams);
-  } catch (error) {
-    console.error(`Home page fetch failed for "${endpoint}"`, error);
-    return fallback;
-  }
-}
 
 export default async function Home() {
   const [
