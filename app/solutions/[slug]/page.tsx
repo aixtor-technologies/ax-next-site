@@ -105,11 +105,11 @@ export default async function SolutionDetailPage({ params }: PageProps) {
 
   const solution = solutionsResponse?.[0];
 
-  if (!solution?.acf?.solution_details_page) {
+  if (!solution) {
     notFound();
   }
 
-  const solutionCustomField = solution.acf;
+  const solutionCustomField = solution.acf ?? {};
   const caseStudies = caseStudiesResponse ?? [];
   const caseStudyMainSection = caseStudyMainResponse?.[0]?.acf ?? {};
   const homePage = homePageResponse?.[0]?.acf ?? {};
