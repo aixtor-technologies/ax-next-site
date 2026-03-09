@@ -129,7 +129,7 @@ const Header = ({ menu: menuProp = [] }: HeaderProps) => {
                 const customClassName = isActive
                   ? "nav-link trans active"
                   : "nav-link";
-
+                if (!item.child_items || item.child_items.length === 0) return null;
                 return (
                   <li className="nav-item" key={item.ID}>
                     <Link
