@@ -112,6 +112,38 @@ export async function fetchCaseStudyBySlug<T = unknown>(
   return response?.[0] ?? null;
 }
 
+// Blogs (custom endpoints)
+export async function fetchBlogMainSection<T = unknown>(): Promise<T> {
+  const response = await safeFetchWordPress<Array<{ acf?: T }>>(
+    "blog-main-sections",
+    [],
+    { slug: "main-section" },
+  );
+  return (response?.[0]?.acf ?? {}) as T;
+}
+
+export async function fetchBlogList<T = unknown>(
+  page = 1,
+  perPage = 12,
+  extraParams: Record<string, string | number> = {},
+): Promise<T> {
+  return safeFetchWordPress<T>("blogs", {} as T, {
+    page,
+    per_page: perPage,
+    ...extraParams,
+  });
+}
+
+export async function fetchBlogDetail<T = unknown>(
+  slug: string,
+): Promise<T | null> {
+  const response = await safeFetchWordPress<T[]>("blogs-and-news", [], {
+    slug,
+  });
+  return response?.[0] ?? null;
+}
+
+
 /* ================= MENU (WP-REST-API Menus plugin) ================= */
 
 export interface MenuChildItem {
