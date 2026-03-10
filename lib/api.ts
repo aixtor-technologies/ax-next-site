@@ -60,6 +60,58 @@ export async function safeFetchWordPress<T>(
   }
 }
 
+/* ================= DOMAIN HELPERS (Industries, Case Studies, etc.) ================= */
+
+// Industries
+export async function fetchIndustryMainSection<T = unknown>(): Promise<T> {
+  const response = await safeFetchWordPress<Array<{ acf?: T }>>(
+    "industry-main-sections",
+    [],
+    { slug: "main-section" },
+  );
+  return (response?.[0]?.acf ?? {}) as T;
+}
+
+export async function fetchIndustries<T = unknown>(
+  perPage = 10,
+): Promise<T[]> {
+  return safeFetchWordPress<T[]>("industry", [], { per_page: perPage });
+}
+
+export async function fetchIndustryBySlug<T = unknown>(
+  slug: string,
+): Promise<T | null> {
+  const response = await safeFetchWordPress<T[]>("industry", [], { slug });
+  return response?.[0] ?? null;
+}
+
+// Case studies
+export async function fetchCaseStudyMainSection<T = unknown>(): Promise<T> {
+  const response = await safeFetchWordPress<Array<{ acf?: T }>>(
+    "case-studies-main-sections",
+    [],
+    { slug: "main-section" },
+  );
+  return (response?.[0]?.acf ?? {}) as T;
+}
+
+export async function fetchCaseStudies<T = unknown>(
+  perPage = 10,
+  extraParams: Record<string, string | number> = {},
+): Promise<T[]> {
+  return safeFetchWordPress<T[]>("case-studies", [], {
+    per_page: perPage,
+    ...extraParams,
+  });
+}
+
+export async function fetchCaseStudyBySlug<T = unknown>(
+  slug: string,
+): Promise<T | null> {
+  const response = await safeFetchWordPress<T[]>("case-studies", [], { slug });
+  return response?.[0] ?? null;
+}
+
 /* ================= MENU (WP-REST-API Menus plugin) ================= */
 
 export interface MenuChildItem {

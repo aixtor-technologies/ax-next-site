@@ -1,5 +1,9 @@
 import { notFound } from "next/navigation";
-import { safeFetchWordPress } from "@/lib/api";
+import {
+  fetchCaseStudyMainSection,
+  fetchIndustryBySlug,
+  safeFetchWordPress,
+} from "@/lib/api";
 import IndustryDetailClient from "./IndustryDetailClient";
 
 import type {
@@ -39,18 +43,11 @@ function uniqueBySlug<T extends { slug: string }>(items: T[]): T[] {
 export default async function IndustryDetailPage({ params }: PageProps) {
   const { slug } = await params;
 
-  const [industryResponse, caseStudyMainResponse, homePageResponse] =
-    await Promise.all([
-      safeFetchWordPress<IndustryPost[]>("industry", [], { slug }),
-      safeFetchWordPress<Array<{ acf?: CaseStudyMainSection }>>(
-        "case-studies-main-sections",
-        [],
-        { slug: "main-section" },
-      ),
-      safeFetchWordPress<Array<{ acf?: HomePageStartSection }>>("home-page", []),
-    ]);
-
-  const industry = industryResponse?.[0];
+  const [industry, caseStudyMainSection, homePageResponse] = await Promise.all([
+    fetchIndustryBySlug<IndustryPost>(slug),
+    fetchCaseStudyMainSection<CaseStudyMainSection>(),
+    safeFetchWordPress<Array<{ acf?: HomePageStartSection }>>("home-page", []),
+  ]);
   if (!industry) notFound();
 
   const industryCustomField = industry.acf ?? {};
@@ -86,7 +83,6 @@ export default async function IndustryDetailPage({ params }: PageProps) {
     ...(fallbackCaseStudiesResponse ?? []),
   ]).slice(0, 5);
 
-  const caseStudyMainSection = caseStudyMainResponse?.[0]?.acf ?? {};
   const homePage = homePageResponse?.[0]?.acf ?? {};
   const blogMainSection = blogMainResponse?.[0]?.acf ?? {};
   const recentBlogList = recentBlogsResponse?.posts ?? [];
