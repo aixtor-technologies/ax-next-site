@@ -2,54 +2,12 @@ import { notFound } from "next/navigation";
 import { safeFetchWordPress } from "@/lib/api";
 import SolutionDetailClient from "./SolutionDetailClient";
 
-type ApiImage = {
-  url?: string;
-  alt?: string;
-};
-
-type SolutionDetailsPage = {
-  banner_section?: {
-    title?: string;
-    description_list?: Array<{ description?: string }>;
-    cta_title?: string;
-    side_image?: ApiImage;
-  };
-  ultimate_section?: {
-    title?: string;
-    description?: string;
-    cta_title?: string;
-  };
-  challenges_section?: {
-    challenges_heading?: string;
-    challenges?: unknown;
-    cta_title?: string;
-  };
-  reasons_section?: {
-    title?: string;
-    reasons_list?: unknown;
-  };
-  benefits_section?: {
-    benefits_heading?: string;
-    benefits?: unknown;
-    faq?: Array<{ title?: string; description?: string }>;
-  };
-  case_studies_section?: {
-    section_title?: string;
-    section_description?: string;
-  };
-  faq_section?: {
-    faq?: Array<{ title?: string; description?: string }>;
-  };
-};
-
-type SolutionAcf = {
-  solution_details_page?: SolutionDetailsPage;
-};
+import type { ApiImage, SolutionCustomField } from "../solutionTypes";
 
 type SolutionPost = {
   id: number;
   slug: string;
-  acf?: SolutionAcf;
+  acf?: SolutionCustomField;
 };
 
 type CaseStudyItem = {

@@ -26,7 +26,7 @@ export default async function RootLayout({
     <html lang="en">
       <body>
         <Header menu={menu} />
-        <main style={{ padding: "0px!important" }}>{children}</main>
+        <div className="middle-content">{children}</div>
         <Footer />
       </body>
     </html>

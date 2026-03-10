@@ -206,8 +206,7 @@ section.letsContinue:before {
 body {
     background: var(--lightgrey);
     font-family: Gilroy;
-    /* padding: 91px 0 0; */
-    padding: 0;
+    padding: 91px 0 0;
     box-sizing: border-box
 }
 

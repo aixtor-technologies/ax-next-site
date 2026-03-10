@@ -3,78 +3,12 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
-type ApiImage = {
-  url?: string;
-  alt?: string;
-};
-
-type BannerData = {
-  title?: string;
-  description_list?: Array<{ description?: string }>;
-  cta_title?: string;
-  side_image?: ApiImage;
-};
-
-type UltimateSection = {
-  title?: string;
-  description?: string;
-  cta_title?: string;
-};
-
-type ChallengeItem = {
-  image?: ApiImage;
-  title?: string;
-  description?: string;
-};
-
-type ChallengesSection = {
-  challenges_heading?: string;
-  challenges?: ChallengeItem[] | Record<string, ChallengeItem>;
-  cta_title?: string;
-};
-
-type ReasonsSection = {
-  title?: string;
-  reasons_list?: Array<{ reson?: string } | string> | Record<string, unknown>;
-};
-
-type BenefitItem = {
-  icon?: ApiImage;
-  title?: string;
-  description?: string;
-};
-
-type FaqItem = {
-  title?: string;
-  description?: string;
-};
-
-type BenefitsSection = {
-  benefits_heading?: string;
-  benefits?: BenefitItem[];
-  faq?: FaqItem[];
-};
-
-type CaseStudiesSection = {
-  section_title?: string;
-  section_description?: string;
-};
-
-type SolutionDetailsPage = {
-  banner_section?: BannerData;
-  ultimate_section?: UltimateSection;
-  challenges_section?: ChallengesSection;
-  reasons_section?: ReasonsSection;
-  benefits_section?: BenefitsSection;
-  case_studies_section?: CaseStudiesSection;
-  faq_section?: {
-    faq?: FaqItem[];
-  };
-};
-
-type SolutionCustomField = {
-  solution_details_page?: SolutionDetailsPage;
-};
+import type {
+  ApiImage,
+  ChallengeItem,
+  FaqItem,
+  SolutionCustomField,
+} from "../solutionTypes";
 
 type CaseStudyItem = {
   id: number;
