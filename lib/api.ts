@@ -143,6 +143,16 @@ export async function fetchBlogDetail<T = unknown>(
   return response?.[0] ?? null;
 }
 
+// Company / career-and-about
+export async function fetchCareerAndAbout<T = unknown>(): Promise<T | null> {
+  const response = await safeFetchWordPress<Array<{ acf?: T }>>(
+    "career-and-about",
+    [],
+  );
+  return (response?.[0]?.acf ?? null) as T | null;
+}
+
+
 
 /* ================= MENU (WP-REST-API Menus plugin) ================= */
 
