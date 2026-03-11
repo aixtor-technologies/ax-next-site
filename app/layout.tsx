@@ -34,6 +34,7 @@ export default async function RootLayout({
         <Header menu={menu} />
         <div className="middle-content">{children}</div>
         <Footer />
+        <SpeedInsights />
       </body>
     </html>
   );
