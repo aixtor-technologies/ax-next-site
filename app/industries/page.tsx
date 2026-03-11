@@ -5,7 +5,12 @@ import {
   fetchIndustries,
   safeFetchWordPress,
 } from "@/lib/api";
+import { getMetadataForPath } from "@/lib/seo";
 import IndustriesListClient from "./IndustriesListClient";
+
+export async function generateMetadata() {
+  return getMetadataForPath("/industries");
+}
 
 import type {
   CaseStudyItem,

@@ -3,7 +3,12 @@ import {
   fetchCaseStudyMainSection,
   safeFetchWordPress,
 } from "@/lib/api";
+import { getMetadataForPath } from "@/lib/seo";
 import CaseStudyListClient from "./CaseStudyListClient";
+
+export async function generateMetadata() {
+  return getMetadataForPath("/case-study");
+}
 
 import type {
   CaseStudyItem,

@@ -1,5 +1,10 @@
 import { fetchCareerAndAbout, safeFetchWordPress } from "@/lib/api";
+import { getMetadataForPath } from "@/lib/seo";
 import CareerPageClient from "./CareerPageClient";
+
+export async function generateMetadata() {
+  return getMetadataForPath("/company/careers");
+}
 
 import type { HomePageStartSection } from "../../case-study/caseStudyTypes";
 

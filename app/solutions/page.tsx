@@ -1,5 +1,10 @@
 import { safeFetchWordPress } from "@/lib/api";
+import { getMetadataForPath } from "@/lib/seo";
 import SolutionsListClient from "./SolutionsListClient";
+
+export async function generateMetadata() {
+  return getMetadataForPath("/solutions");
+}
 
 type ApiImage = {
   url?: string;
@@ -58,11 +63,6 @@ type HomePageStartSection = {
     description?: string;
     cta_title?: string;
   };
-};
-
-export const metadata = {
-  title: "Solutions",
-  description: "Explore our solutions for digital experience, portals, and more.",
 };
 
 export default async function SolutionsPage() {

@@ -5,7 +5,15 @@ import {
   fetchBlogList,
   safeFetchWordPress,
 } from "@/lib/api";
+import { getMetadataForPath } from "@/lib/seo";
 import BlogDetailClient from "./BlogDetailClient";
+
+type PagePropsMeta = { params: Promise<{ slug: string }> };
+
+export async function generateMetadata({ params }: PagePropsMeta) {
+  const { slug } = await params;
+  return getMetadataForPath(`/blog/${slug}`);
+}
 
 import type {
   BlogDetail,

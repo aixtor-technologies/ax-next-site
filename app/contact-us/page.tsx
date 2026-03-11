@@ -1,5 +1,10 @@
 import { fetchCareerAndAbout, safeFetchWordPress } from "@/lib/api";
+import { getMetadataForPath } from "@/lib/seo";
 import type { HomePageStartSection } from "../case-study/caseStudyTypes";
+
+export async function generateMetadata() {
+  return getMetadataForPath("/contact-us");
+}
 
 type ApiImage = {
   url?: string;

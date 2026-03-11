@@ -1,5 +1,10 @@
 import { safeFetchWordPress } from "@/lib/api";
+import { getMetadataForPath } from "@/lib/seo";
 import ServicesListClient from "./ServicesListClient";
+
+export async function generateMetadata() {
+  return getMetadataForPath("/services");
+}
 
 type ApiImage = {
   url?: string;
@@ -58,11 +63,6 @@ type HomePageStartSection = {
     description?: string;
     cta_title?: string;
   };
-};
-
-export const metadata = {
-  title: "Services",
-  description: "Explore our services including Liferay consulting, migration, and more.",
 };
 
 export default async function ServicesPage() {
