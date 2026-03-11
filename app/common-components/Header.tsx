@@ -130,8 +130,9 @@ const Header = ({ menu: menuProp = [] }: HeaderProps) => {
                   ? "nav-link trans active"
                   : "nav-link";
                 if (!item.child_items || item.child_items.length === 0) return null;
+                const megaMenuClass = item.child_items.length <= 5 ? "nav-item V-Menu" : "nav-item";
                 return (
-                  <li className="nav-item" key={item.ID}>
+                  <li className={megaMenuClass} key={item.ID}>
                     <Link
                       href={itemPath}
                       className={customClassName}
@@ -139,7 +140,7 @@ const Header = ({ menu: menuProp = [] }: HeaderProps) => {
                     >
                       {item.title}
                     </Link>
-
+                    
                     {item.child_items && item.child_items.length > 0 && (
                       <>
                         <div
@@ -152,8 +153,14 @@ const Header = ({ menu: menuProp = [] }: HeaderProps) => {
                             <ul>
                               {item.child_items.map((child) => (
                                 <li key={child.ID}>
+
+                                  
                                   <Link
-                                    href={`/${item.slug}/${child.slug}`}
+                                    href={
+                                          item.slug === 'resources'
+                                            ? `/${child.slug === 'case-studies' ? 'case-study' : child.slug}/`
+                                            : `/${item.slug}/${child.slug === 'case-studies' ? 'case-study' : child.slug}/`
+                                        }
                                     className="nav_item"
                                     onClick={closeMobileNavbar}
                                   >
