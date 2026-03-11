@@ -13,6 +13,10 @@ import "../styles/slick-theme.min.css";
 export const metadata = {
   title: "Aixtor Website",
   description: "Next.js + WordPress CMS Website",
+  icons: {
+    icon: "/assets/images/AX-logo.svg",
+    apple: "/assets/images/AX-logo.svg",
+  },
 };
 
 export default async function RootLayout({
