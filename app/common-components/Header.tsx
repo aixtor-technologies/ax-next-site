@@ -134,7 +134,7 @@ const Header = ({ menu: menuProp = [] }: HeaderProps) => {
                 return (
                   <li className={megaMenuClass} key={item.ID}>
                     <Link
-                      href={itemPath}
+                      href={itemPath === 'resources' ? `case-study` : `${itemPath}`}
                       className={customClassName}
                       onClick={closeMobileNavbar}
                     >
