@@ -26,7 +26,9 @@ export async function fetchWordPress<T>(
 
   let response: Response;
   try {
-    response = await fetch(requestUrl, { cache: "no-store" });
+    response = await fetch(requestUrl, {
+      next: { revalidate: 300 },
+    });
   } catch (networkError) {
     const message =
       networkError instanceof Error ? networkError.message : String(networkError);
@@ -183,7 +185,9 @@ async function fetchMenuFromApi(menuSlug: string): Promise<MenuItem[]> {
 
   let response: Response;
   try {
-    response = await fetch(requestUrl, { cache: "no-store" });
+    response = await fetch(requestUrl, {
+      next: { revalidate: 300 },
+    });
   } catch (networkError) {
     const message =
       networkError instanceof Error ? networkError.message : String(networkError);

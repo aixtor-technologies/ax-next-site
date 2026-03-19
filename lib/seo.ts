@@ -1,4 +1,3 @@
-import { safeFetchWordPress } from "@/lib/api";
 import type { Metadata } from "next";
 
 /** Base URL for canonical and Open Graph URLs. Set NEXT_PUBLIC_SITE_URL in .env */
@@ -97,10 +96,27 @@ export async function fetchSEOMeta(
   endpoint: string,
   slug: string,
 ): Promise<YoastMeta | null> {
+  const baseUrl = process.env.NEXT_PUBLIC_WP_API_URL;
+  if (!baseUrl) {
+    return null;
+  }
+
+  const normalizedBaseUrl = baseUrl.replace(/\/$/, "");
+  const url = new URL(`${normalizedBaseUrl}/wp/v2/${endpoint}`);
+  url.searchParams.set("slug", slug);
+
   try {
-    const data = await safeFetchWordPress<
-      Array<{ yoast_head_json?: YoastMeta }>
-    >(endpoint, [], { slug });
+    const response = await fetch(url.toString(), {
+      // Keep SEO fast between route transitions while refreshing periodically.
+      next: { revalidate: 300 },
+      headers: {
+        "X-Custom-Header": "METATAG",
+      },
+    });
+    if (!response.ok) {
+      return null;
+    }
+    const data = (await response.json()) as Array<{ yoast_head_json?: YoastMeta }>;
     const first = Array.isArray(data) ? data[0] : null;
     return first?.yoast_head_json ?? null;
   } catch {
