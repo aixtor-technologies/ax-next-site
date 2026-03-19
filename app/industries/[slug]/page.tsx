@@ -4,15 +4,7 @@ import {
   fetchIndustryBySlug,
   safeFetchWordPress,
 } from "@/lib/api";
-import { getMetadataForPath } from "@/lib/seo";
 import IndustryDetailClient from "./IndustryDetailClient";
-
-type PagePropsMeta = { params: Promise<{ slug: string }> };
-
-export async function generateMetadata({ params }: PagePropsMeta) {
-  const { slug } = await params;
-  return getMetadataForPath(`/industries/${slug}`);
-}
 
 import type {
   BlogMainSection,

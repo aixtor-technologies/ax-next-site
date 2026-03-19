@@ -1,9 +1,4 @@
 import { fetchCareerAndAbout } from "@/lib/api";
-import { getMetadataForPath } from "@/lib/seo";
-
-export async function generateMetadata() {
-  return getMetadataForPath("/company");
-}
 
 type ApiImage = {
   url?: string;

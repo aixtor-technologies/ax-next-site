@@ -1,14 +1,8 @@
 import { notFound } from "next/navigation";
 import { safeFetchWordPress } from "@/lib/api";
-import { getMetadataForPath } from "@/lib/seo";
 import SolutionDetailClient from "./SolutionDetailClient";
 
 type PageProps = { params: Promise<{ slug: string }> };
-
-export async function generateMetadata({ params }: PageProps) {
-  const { slug } = await params;
-  return getMetadataForPath(`/solutions/${slug}`);
-}
 
 import type { ApiImage, SolutionCustomField } from "../solutionTypes";
 

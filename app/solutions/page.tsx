@@ -1,10 +1,5 @@
 import { safeFetchWordPress } from "@/lib/api";
-import { getMetadataForPath } from "@/lib/seo";
 import SolutionsListClient from "./SolutionsListClient";
-
-export async function generateMetadata() {
-  return getMetadataForPath("/solutions");
-}
 
 type ApiImage = {
   url?: string;

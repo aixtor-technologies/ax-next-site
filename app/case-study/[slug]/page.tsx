@@ -5,17 +5,7 @@ import {
   fetchCaseStudyMainSection,
   safeFetchWordPress,
 } from "@/lib/api";
-import { getMetadataForPath } from "@/lib/seo";
 import CaseStudyDetailClient from "./CaseStudyDetailClient";
-
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
-  const { slug } = await params;
-  return getMetadataForPath(`/case-study/${slug}`);
-}
 
 import type {
   CaseStudyCustomField,
