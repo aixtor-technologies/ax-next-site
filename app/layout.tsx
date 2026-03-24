@@ -2,7 +2,6 @@ import type { ReactNode } from "react";
 import { safeFetchMenu } from "@/lib/api";
 import Header from "@/app/common-components/Header";
 import Footer from "@/app/common-components/Footer";
-import { SpeedInsights } from "@vercel/speed-insights/next"
 import "./globals.css";
 import "../styles/fonts.css";
 import "../styles/bootstrap.min.css";
@@ -34,7 +33,6 @@ export default async function RootLayout({
         <Header menu={menu} />
         <div className="middle-content">{children}</div>
         <Footer />
-        <SpeedInsights />
       </body>
     </html>
   );

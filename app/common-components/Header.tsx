@@ -134,7 +134,7 @@ const Header = ({ menu: menuProp = [] }: HeaderProps) => {
                 return (
                   <li className={megaMenuClass} key={item.ID}>
                     <Link
-                      href={itemPath === 'resources' ? `case-study` : `${itemPath}`}
+                      href={itemPath === "/resources" ? "/case-study" : itemPath}
                       className={customClassName}
                       onClick={closeMobileNavbar}
                     >
@@ -190,7 +190,7 @@ const Header = ({ menu: menuProp = [] }: HeaderProps) => {
 
               <li className="nav-item">
                 <Link
-                  href="/contact"
+                  href="/contact-us"
                   className="nav-link"
                   onClick={closeMobileNavbar}
                 >
@@ -250,7 +250,7 @@ const Header = ({ menu: menuProp = [] }: HeaderProps) => {
               <span className="navbar-toggler-icon"></span>
             </button>
             <div className="rightbar-header">
-              <Link href="/contact/" className="outline-btn trans" title="Contact Us">
+              <Link href="/contact-us/" className="outline-btn trans" title="Contact Us">
                 <span className="button-content">Contact Us</span>
               </Link>
             </div>

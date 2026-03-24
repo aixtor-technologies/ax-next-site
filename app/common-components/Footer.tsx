@@ -46,14 +46,14 @@ const Footer = () => {
             <div className="row">
               <div className="col-lg-4">
                 <div className="footer_logo">
-                  <a href="/" title="Aixtor Technologies">
+                  <Link href="/" title="Aixtor Technologies">
                     <img src="/assets/images/aixtor-logo.svg"
                       alt="Aixtor Technologies"
                       width={143}
                       height={65}
                       loading="eager"
                     />
-                  </a>
+                  </Link>
                 </div>
                 <address>
                   <img loading="eager"
@@ -174,8 +174,8 @@ const Footer = () => {
               </div>
               <div className="copyright_text">
                 &copy; {currentYear} Aixtor Technologies LLP. All rights reserved
-                <span><a href="/privacy-policy/"> Privacy Policy </a></span>
-                <span><a href="/cookie-policy/"> Cookie Policy </a></span>
+                <span><Link href="/privacy-policy/"> Privacy Policy </Link></span>
+                <span><Link href="/cookie-policy/"> Cookie Policy </Link></span>
               </div>
             </div>
           </div>
