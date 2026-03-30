@@ -133,7 +133,8 @@ const Header = ({ menu: menuProp = [] }: HeaderProps) => {
                 const megaMenuClass = item.child_items.length <= 5 ? "nav-item V-Menu" : "nav-item";
                 return (
                   <li className={megaMenuClass} key={item.ID}>
-                    <Link prefetch={false} href={itemPath === "/resources" ? "/case-study" : itemPath}
+                    <Link
+                      href={itemPath === "/resources" ? "/case-study" : itemPath}
                       className={customClassName}
                       onClick={closeMobileNavbar}
                       prefetch={false}
@@ -155,7 +156,8 @@ const Header = ({ menu: menuProp = [] }: HeaderProps) => {
                                 <li key={child.ID}>
 
                                   
-                                  <Link prefetch={false} href={
+                                  <Link
+                                    href={
                                           item.slug === 'resources'
                                             ? `/${child.slug === 'case-studies' ? 'case-study' : child.slug}/`
                                             : `/${item.slug}/${child.slug === 'case-studies' ? 'case-study' : child.slug}/`
