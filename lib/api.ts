@@ -26,9 +26,13 @@ export async function fetchWordPress<T>(
 
   let response: Response;
   try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 8000);
     response = await fetch(requestUrl, {
       next: { revalidate: 300 },
+      signal: controller.signal,
     });
+    clearTimeout(timeoutId);
   } catch (networkError) {
     const message =
       networkError instanceof Error ? networkError.message : String(networkError);
@@ -185,9 +189,13 @@ async function fetchMenuFromApi(menuSlug: string): Promise<MenuItem[]> {
 
   let response: Response;
   try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 8000);
     response = await fetch(requestUrl, {
       next: { revalidate: 300 },
+      signal: controller.signal,
     });
+    clearTimeout(timeoutId);
   } catch (networkError) {
     const message =
       networkError instanceof Error ? networkError.message : String(networkError);

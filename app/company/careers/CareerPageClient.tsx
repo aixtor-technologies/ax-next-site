@@ -98,8 +98,7 @@ export default function CareerPageClient({
                 {banner.title ? <h1>{banner.title}</h1> : null}
                 {banner.description ? <p>{banner.description}</p> : null}
                 {banner.cta_title ? (
-                  <Link
-                    href="/contact-us/"
+                  <Link prefetch={false} href="/contact-us/"
                     className="outline-btn trans"
                     title={banner.cta_title}
                   >
@@ -267,7 +266,7 @@ export default function CareerPageClient({
             data-aos="fade-up"
             data-aos-duration="15"
           >
-            <Link href={`${life.cta_link.url}/`}>
+            <Link prefetch={false} href={`${life.cta_link.url}/`}>
               <div
                 className="outline-btn trans"
                 title={life.cta_title}
@@ -351,8 +350,7 @@ export default function CareerPageClient({
                       )}
                   </div>
                   <div className="buttons">
-                    <Link
-                      href="/contact-us/"
+                    <Link prefetch={false} href="/contact-us/"
                       className="trans outline-btn applyBtn"
                       title="Apply now"
                     >
@@ -412,8 +410,7 @@ export default function CareerPageClient({
               </div>
               <div className="col-md-4" data-aos="fade-left" data-aos-duration="15">
                 {start?.cta_title ? (
-                  <Link
-                    href="/contact-us/"
+                  <Link prefetch={false} href="/contact-us/"
                     className="outline-btn trans"
                     title={start.cta_title}
                   >

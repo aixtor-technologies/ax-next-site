@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { useSharedPageData } from "@/lib/useSharedPageData";
 
 type ApiImage = {
   url?: string;
@@ -105,40 +106,9 @@ type ServiceCustomField = {
   service_details_page?: ServiceDetailsPage;
 };
 
-type CaseStudyItem = {
-  id: number;
-  slug: string;
-  acf?: {
-    home_page?: {
-      title?: string;
-      description?: string;
-      image?: ApiImage;
-    };
-  };
-};
-
-type CaseStudyMainSection = {
-  home_page?: {
-    title?: string;
-    description?: string;
-    cta_title?: string;
-  };
-};
-
-type HomePageStartSection = {
-  start_project_section?: {
-    heading?: string;
-    description?: string;
-    cta_title?: string;
-  };
-};
-
 type ServiceDetailClientProps = {
   slug: string;
   serviceCustomField: ServiceCustomField;
-  caseStudies: CaseStudyItem[];
-  caseStudyMainSection: CaseStudyMainSection;
-  homePage: HomePageStartSection;
 };
 
 function FaqAccordion({ faqData }: { faqData: FaqItem[] }) {
@@ -279,7 +249,7 @@ function InquiryModal({
           </div>
           <div className="modal-body">
             <p>Interested in this service? Get in touch with us.</p>
-            <Link href="/contact/" className="outline-btn trans" onClick={onHide}>
+            <Link prefetch={false} href="/contact/" className="outline-btn trans" onClick={onHide}>
               <span className="button-content">Go to Contact</span>
             </Link>
             <p className="mt-2 small text-muted">{slug}</p>
@@ -293,14 +263,14 @@ function InquiryModal({
 export default function ServiceDetailClient({
   slug,
   serviceCustomField,
-  caseStudies,
-  caseStudyMainSection,
-  homePage,
 }: ServiceDetailClientProps) {
   const [showModal, setShowModal] = useState(false);
   const [windowWidth, setWindowWidth] = useState(
     typeof window !== "undefined" ? window.innerWidth : 1024,
   );
+
+  // Lazily load shared data (case studies, start project) on the client
+  const { caseStudies, caseStudyMainSection, homePage } = useSharedPageData();
 
   useEffect(() => {
     const handleResize = () => setWindowWidth(window.innerWidth);
@@ -1063,8 +1033,7 @@ export default function ServiceDetailClient({
               </div>
               {caseStudyMainSection.home_page?.cta_title && (
                 <div className="rightbar">
-                  <Link
-                    href="/case-study/"
+                  <Link prefetch={false} href="/case-study/"
                     className="trans outline-btn"
                     title={caseStudyMainSection.home_page.cta_title}
                   >
@@ -1084,8 +1053,7 @@ export default function ServiceDetailClient({
                   className="slider_item"
                   data-slider-card
                 >
-                  <Link
-                    href={`/case-study/${caseStudy.slug}/`}
+                  <Link prefetch={false} href={`/case-study/${caseStudy.slug}/`}
                     className="casestudies_card trans"
                     title={caseStudy.acf?.home_page?.title}
                   >
@@ -1173,7 +1141,7 @@ export default function ServiceDetailClient({
                   )}
                 </div>
                 <div className="rightbar">
-                  <Link href="/contact/" className="outline-btn trans">
+                  <Link prefetch={false} href="/contact/" className="outline-btn trans">
                     <span className="text_wrap button-content">
                       {homePage.start_project_section?.cta_title ??
                         "Contact Us"}

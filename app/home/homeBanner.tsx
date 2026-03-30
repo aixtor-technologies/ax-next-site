@@ -156,7 +156,7 @@ export default function HomeBanner({ homePage }: HomePageBannerProps) {
             <p>{homePage.banner_section?.description || ""}</p>
 
             {homePage.banner_section?.cta_title ? (
-              <Link href="/contact/" className="outline-btn trans">
+              <Link prefetch={false} href="/contact/" className="outline-btn trans">
                 <span className="button-content">
                   {homePage.banner_section.cta_title}
                 </span>
@@ -188,8 +188,7 @@ export default function HomeBanner({ homePage }: HomePageBannerProps) {
             <ul className="rotating-circle">
               {rotatingItems.map((item) => (
                 <li key={item.href} className={item.className}>
-                  <Link
-                    href={item.href}
+                  <Link prefetch={false} href={item.href}
                     onMouseEnter={() => handleMouseEnter(item.label)}
                     onMouseLeave={handleMouseLeave}
                     className="cycleImg"

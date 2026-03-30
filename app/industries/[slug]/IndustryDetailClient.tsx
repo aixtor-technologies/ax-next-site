@@ -3,24 +3,15 @@
 import type { ReactNode } from "react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
+import { useSharedPageData } from "@/lib/useSharedPageData";
 
 import type {
-  BlogMainSection,
-  CaseStudyItem,
-  CaseStudyMainSection,
-  HomePageStartSection,
   IndustryCustomField,
-  RecentBlogItem,
 } from "../industryTypes";
 
 type IndustryDetailClientProps = {
   slug: string;
   industryCustomField: IndustryCustomField;
-  caseStudies: CaseStudyItem[];
-  caseStudyMainSection: CaseStudyMainSection;
-  blogMainSection: BlogMainSection;
-  recentBlogList: RecentBlogItem[];
-  homePage: HomePageStartSection;
 };
 
 function HorizontalSlider({
@@ -150,8 +141,7 @@ function VerticalHelpSlider({
       <ul ref={parentRef}>
         <li>
           {active?.read_more?.url ? (
-            <Link
-              href={`${active.read_more.url}/`}
+            <Link prefetch={false} href={`${active.read_more.url}/`}
               className="link-container"
               title="Read More Services"
             >
@@ -182,12 +172,10 @@ function VerticalHelpSlider({
 
 export default function IndustryDetailClient({
   industryCustomField,
-  caseStudies,
-  caseStudyMainSection,
-  blogMainSection,
-  recentBlogList,
-  homePage,
 }: IndustryDetailClientProps) {
+  // Lazily load shared data (case studies, blogs, start project) on the client
+  const { caseStudies, caseStudyMainSection, blogMainSection, recentBlogList, homePage } = useSharedPageData();
+
   const details = industryCustomField?.industries_details_page ?? {};
   const banner = details.banner_section ?? {};
   const challenges = details.challenges_section ?? {};
@@ -336,8 +324,7 @@ export default function IndustryDetailClient({
               </div>
               {caseStudyMainSection?.home_page?.cta_title ? (
                 <div className="rightbar">
-                  <Link
-                    href="/case-study/"
+                  <Link prefetch={false} href="/case-study/"
                     className="trans outline-btn"
                     title={caseStudyMainSection.home_page.cta_title}
                   >
@@ -360,8 +347,7 @@ export default function IndustryDetailClient({
                   data-aos="fade-up"
                   data-aos-duration="15"
                 >
-                  <Link
-                    className="casestudies_card trans"
+                  <Link prefetch={false} className="casestudies_card trans"
                     href={`/case-study/${cs.slug}/`}
                     title={cs?.acf?.home_page?.title}
                   >
@@ -403,7 +389,7 @@ export default function IndustryDetailClient({
                 {recentDesc ? <p className="details">{recentDesc}</p> : null}
               </div>
               <div className="rightbar">
-                <Link href="/blog/" className="trans outline-btn" title="View all blogs">
+                <Link prefetch={false} href="/blog/" className="trans outline-btn" title="View all blogs">
                   <span className="text_wrap button-content">View all blogs</span>
                 </Link>
               </div>
@@ -420,7 +406,7 @@ export default function IndustryDetailClient({
                   data-aos="fade-up"
                   data-aos-duration="15"
                 >
-                  <Link href={`/blog/${blog.slug}/`} title={blog?.title}>
+                  <Link prefetch={false} href={`/blog/${blog.slug}/`} title={blog?.title}>
                     <div className="blog_card trans">
                       {blog.categories ? (
                         <div className="blog_badge">{blog.categories}</div>
@@ -469,8 +455,7 @@ export default function IndustryDetailClient({
               </div>
               <div className="col-md-4" data-aos="fade-left" data-aos-duration="15">
                 {start?.cta_title ? (
-                  <Link
-                    href="/contact-us/"
+                  <Link prefetch={false} href="/contact-us/"
                     className="outline-btn trans"
                     title={start.cta_title}
                   >

@@ -2,27 +2,20 @@
 
 import { useMemo } from "react";
 import Link from "next/link";
+import { useSharedPageData } from "@/lib/useSharedPageData";
 
-import type {
-  BlogDetail,
-  BlogMainSection,
-  BlogListItem,
-} from "../blogTypes";
-import type { HomePageStartSection } from "../../case-study/caseStudyTypes";
+import type { BlogDetail } from "../blogTypes";
 
 type BlogDetailClientProps = {
   blogCustomField: BlogDetail;
-  blogMainSection: BlogMainSection;
-  recentBlogList: BlogListItem[];
-  homePage: HomePageStartSection;
 };
 
 export default function BlogDetailClient({
   blogCustomField,
-  blogMainSection,
-  recentBlogList,
-  homePage,
 }: BlogDetailClientProps) {
+  // Lazily load shared data (recent blogs, blog section, start project) on the client
+  const { blogMainSection, recentBlogList, homePage } = useSharedPageData();
+
   const details = blogCustomField?.acf ?? {};
   const recentSection = blogMainSection?.details_page?.recent_section ?? {};
   const start = homePage?.start_project_section ?? {};
@@ -164,8 +157,7 @@ export default function BlogDetailClient({
                   ) : null}
                 </div>
                 <div className="rightbar">
-                  <Link
-                    href="/blog/"
+                  <Link prefetch={false} href="/blog/"
                     className="trans outline-btn"
                     title="View all blogs"
                   >
@@ -188,7 +180,7 @@ export default function BlogDetailClient({
                     data-aos="fade-up"
                     data-aos-duration="15"
                   >
-                    <Link href={`/blog/${blog.slug}/`} title={blog.title}>
+                    <Link prefetch={false} href={`/blog/${blog.slug}/`} title={blog.title}>
                       <div className="blog_card trans">
                         <div className="blog_badge">{blog.categories}</div>
                         <figure className="blog_img">
@@ -238,8 +230,7 @@ export default function BlogDetailClient({
               </div>
               <div className="col-md-4" data-aos="fade-left" data-aos-duration="15">
                 {start?.cta_title ? (
-                  <Link
-                    href="/contact-us/"
+                  <Link prefetch={false} href="/contact-us/"
                     className="outline-btn trans"
                     title={start.cta_title}
                   >

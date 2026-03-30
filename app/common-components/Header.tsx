@@ -105,7 +105,7 @@ const Header = ({ menu: menuProp = [] }: HeaderProps) => {
           
           {/* LOGO */}
 
-          <Link className="navbar-brand leftbar-header" href="/">
+          <Link prefetch={false} className="navbar-brand leftbar-header" href="/">
             <Image
               src="/assets/images/aixtor-logo.svg"
               alt="Aixtor Technologies"
@@ -133,10 +133,10 @@ const Header = ({ menu: menuProp = [] }: HeaderProps) => {
                 const megaMenuClass = item.child_items.length <= 5 ? "nav-item V-Menu" : "nav-item";
                 return (
                   <li className={megaMenuClass} key={item.ID}>
-                    <Link
-                      href={itemPath === "/resources" ? "/case-study" : itemPath}
+                    <Link prefetch={false} href={itemPath === "/resources" ? "/case-study" : itemPath}
                       className={customClassName}
                       onClick={closeMobileNavbar}
+                      prefetch={false}
                     >
                       {item.title}
                     </Link>
@@ -155,14 +155,14 @@ const Header = ({ menu: menuProp = [] }: HeaderProps) => {
                                 <li key={child.ID}>
 
                                   
-                                  <Link
-                                    href={
+                                  <Link prefetch={false} href={
                                           item.slug === 'resources'
                                             ? `/${child.slug === 'case-studies' ? 'case-study' : child.slug}/`
                                             : `/${item.slug}/${child.slug === 'case-studies' ? 'case-study' : child.slug}/`
                                         }
                                     className="nav_item"
                                     onClick={closeMobileNavbar}
+                                    prefetch={false}
                                   >
                                     {child.thumbnail_src && (
                                     <div className="nav_item_icon">
@@ -189,8 +189,7 @@ const Header = ({ menu: menuProp = [] }: HeaderProps) => {
               {/* CONTACT */}
 
               <li className="nav-item">
-                <Link
-                  href="/contact-us"
+                <Link prefetch={false} href="/contact-us"
                   className="nav-link"
                   onClick={closeMobileNavbar}
                 >
@@ -250,7 +249,7 @@ const Header = ({ menu: menuProp = [] }: HeaderProps) => {
               <span className="navbar-toggler-icon"></span>
             </button>
             <div className="rightbar-header">
-              <Link href="/contact-us/" className="outline-btn trans" title="Contact Us">
+              <Link prefetch={false} href="/contact-us/" className="outline-btn trans" title="Contact Us">
                 <span className="button-content">Contact Us</span>
               </Link>
             </div>

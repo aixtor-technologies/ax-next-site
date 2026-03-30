@@ -46,7 +46,7 @@ const Footer = () => {
             <div className="row">
               <div className="col-lg-4">
                 <div className="footer_logo">
-                  <Link href="/" title="Aixtor Technologies">
+                  <Link prefetch={false} href="/" title="Aixtor Technologies">
                     <img src="/assets/images/aixtor-logo.svg"
                       alt="Aixtor Technologies"
                       width={143}
@@ -113,20 +113,20 @@ const Footer = () => {
                       <div className="footer_navbar">
                         <h4>Services</h4>
                         <ul>
-                          <li><Link href="/services/enterprise-portal-development/"  title="Enterprise Portal Development">Enterprise Portal Development</Link></li>
-                          <li><Link href="/services/liferay-consulting-services/"  title="Liferay Consulting &amp; Development">Liferay Consulting &amp; Development</Link></li>
-                          <li><Link href="/services/liferay-upgrade/"  title="Liferay Upgrade">Liferay Upgrade</Link></li>
-                          <li><Link href="/services/liferay-migration-services/"  title="Liferay Migration">Liferay Migration</Link></li>
-                          <li><Link href="/services/web-portal-development/"  title="Web Portal Development">Web Portal Development</Link></li>
-                          <li><Link href="/services/ui-ux-design/"  title="UI/UX Design">UI/UX Design</Link></li>
-                          <li><Link href="/services/rpa-development-services/"  title="RPA Development ">RPA Development </Link></li>
-                          <li><Link href="/services/drupal-development/"  title="Drupal Development">Drupal Development</Link></li>
-                          <li><Link href="/services/qa-automation-testing-services/"  title="QA Automation Testing">QA Automation Testing</Link></li>
-                          <li><Link href="/services/qa-manual-testing/"  title="QA Manual Testing">QA Manual Testing</Link></li>
-                          <li><Link href="/services/bi-and-data-analytics-services/"  title="BI and Data Analytics Services">BI and Data Analytics Services</Link></li>
-                          <li><Link href="/services/devops/"  title="DevOps as a Service">DevOps as a Service</Link></li>
-                          <li><Link href="/services/ai-and-ml/"  title="AI and ML">AI and ML</Link></li>
-                          <li><Link href="/services/performance-tuning/"  title="Performance Tuning ">Performance Tuning </Link></li>
+                          <li><Link prefetch={false} href="/services/enterprise-portal-development/"  title="Enterprise Portal Development">Enterprise Portal Development</Link></li>
+                          <li><Link prefetch={false} href="/services/liferay-consulting-services/"  title="Liferay Consulting &amp; Development">Liferay Consulting &amp; Development</Link></li>
+                          <li><Link prefetch={false} href="/services/liferay-upgrade/"  title="Liferay Upgrade">Liferay Upgrade</Link></li>
+                          <li><Link prefetch={false} href="/services/liferay-migration-services/"  title="Liferay Migration">Liferay Migration</Link></li>
+                          <li><Link prefetch={false} href="/services/web-portal-development/"  title="Web Portal Development">Web Portal Development</Link></li>
+                          <li><Link prefetch={false} href="/services/ui-ux-design/"  title="UI/UX Design">UI/UX Design</Link></li>
+                          <li><Link prefetch={false} href="/services/rpa-development-services/"  title="RPA Development ">RPA Development </Link></li>
+                          <li><Link prefetch={false} href="/services/drupal-development/"  title="Drupal Development">Drupal Development</Link></li>
+                          <li><Link prefetch={false} href="/services/qa-automation-testing-services/"  title="QA Automation Testing">QA Automation Testing</Link></li>
+                          <li><Link prefetch={false} href="/services/qa-manual-testing/"  title="QA Manual Testing">QA Manual Testing</Link></li>
+                          <li><Link prefetch={false} href="/services/bi-and-data-analytics-services/"  title="BI and Data Analytics Services">BI and Data Analytics Services</Link></li>
+                          <li><Link prefetch={false} href="/services/devops/"  title="DevOps as a Service">DevOps as a Service</Link></li>
+                          <li><Link prefetch={false} href="/services/ai-and-ml/"  title="AI and ML">AI and ML</Link></li>
+                          <li><Link prefetch={false} href="/services/performance-tuning/"  title="Performance Tuning ">Performance Tuning </Link></li>
                         </ul>
                       </div>
                     </div>
@@ -134,13 +134,13 @@ const Footer = () => {
                       <div className="footer_navbar">
                         <h4>Solutions</h4>
                         <ul>
-                          <li><Link href="/solutions/intranet-portal/"  title="Intranet Portal">Intranet Portal</Link></li>
-                          <li><Link href="/solutions/customer-self-service-portal/"  title="Customer Self-Service Portal">Customer Self-Service Portal</Link></li>
-                          <li><Link href="/solutions/partner-portal-solution/"  title="Partner Management Portal">Partner Management Portal</Link></li>
-                          <li><Link href="/solutions/supplier-and-vendor-portal/"  title="Supplier and Vendor Portal">Supplier and Vendor Portal</Link></li>
-                          <li><Link href="/solutions/e-commerce-portal-development/"  title="E-Commerce Portal">E-Commerce Portal</Link></li>
-                          <li><Link href="/solutions/enterprise-websites/"  title="Enterprise Websites">Enterprise Websites</Link></li>
-                          <li><Link href="/solutions/enterprise-content-management-solution/"  title="Enterprise Content Management">Enterprise Content Management</Link></li>
+                          <li><Link prefetch={false} href="/solutions/intranet-portal/"  title="Intranet Portal">Intranet Portal</Link></li>
+                          <li><Link prefetch={false} href="/solutions/customer-self-service-portal/"  title="Customer Self-Service Portal">Customer Self-Service Portal</Link></li>
+                          <li><Link prefetch={false} href="/solutions/partner-portal-solution/"  title="Partner Management Portal">Partner Management Portal</Link></li>
+                          <li><Link prefetch={false} href="/solutions/supplier-and-vendor-portal/"  title="Supplier and Vendor Portal">Supplier and Vendor Portal</Link></li>
+                          <li><Link prefetch={false} href="/solutions/e-commerce-portal-development/"  title="E-Commerce Portal">E-Commerce Portal</Link></li>
+                          <li><Link prefetch={false} href="/solutions/enterprise-websites/"  title="Enterprise Websites">Enterprise Websites</Link></li>
+                          <li><Link prefetch={false} href="/solutions/enterprise-content-management-solution/"  title="Enterprise Content Management">Enterprise Content Management</Link></li>
                         </ul>
                       </div>
                     </div>
@@ -148,15 +148,15 @@ const Footer = () => {
                     <div className="footer_navbar">
                       <h4>Company</h4>
                       <ul>
-                        <li><Link href="/company/about-us/">About</Link></li>
-                        <li><Link href="/company/careers/">Career</Link></li>
+                        <li><Link prefetch={false} href="/company/about-us/">About</Link></li>
+                        <li><Link prefetch={false} href="/company/careers/">Career</Link></li>
                       </ul>
                     </div>
                     <div className="footer_navbar">
                       <h4>Resources</h4>
                       <ul>
-                        <li><Link href="/case-study/">Case study</Link></li>
-                        <li><Link href="/blog/">Blog</Link></li>
+                        <li><Link prefetch={false} href="/case-study/">Case study</Link></li>
+                        <li><Link prefetch={false} href="/blog/">Blog</Link></li>
                       </ul>
                     </div>
                   </div>
@@ -174,8 +174,8 @@ const Footer = () => {
               </div>
               <div className="copyright_text">
                 &copy; {currentYear} Aixtor Technologies LLP. All rights reserved
-                <span><Link href="/privacy-policy/"> Privacy Policy </Link></span>
-                <span><Link href="/cookie-policy/"> Cookie Policy </Link></span>
+                <span><Link prefetch={false} href="/privacy-policy/"> Privacy Policy </Link></span>
+                <span><Link prefetch={false} href="/cookie-policy/"> Cookie Policy </Link></span>
               </div>
             </div>
           </div>

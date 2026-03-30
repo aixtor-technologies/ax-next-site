@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useSharedPageData } from "@/lib/useSharedPageData";
 
 import type {
   ApiImage,
@@ -10,50 +11,19 @@ import type {
   SolutionCustomField,
 } from "../solutionTypes";
 
-type CaseStudyItem = {
-  id: number;
-  slug: string;
-  acf?: {
-    home_page?: {
-      title?: string;
-      description?: string;
-      image?: ApiImage;
-    };
-  };
-};
-
-type CaseStudyMainSection = {
-  home_page?: {
-    title?: string;
-    description?: string;
-    cta_title?: string;
-  };
-};
-
-type HomePageStartSection = {
-  start_project_section?: {
-    heading?: string;
-    description?: string;
-    cta_title?: string;
-  };
-};
-
 type SolutionDetailClientProps = {
   slug: string;
   solutionCustomField: SolutionCustomField;
-  caseStudies: CaseStudyItem[];
-  caseStudyMainSection: CaseStudyMainSection;
-  homePage: HomePageStartSection;
 };
 
 export default function SolutionDetailClient({
   slug,
   solutionCustomField,
-  caseStudies,
-  caseStudyMainSection,
-  homePage,
 }: SolutionDetailClientProps) {
   const [showModal, setShowModal] = useState(false);
+
+  // Lazily load shared data (case studies, start project) on the client
+  const { caseStudies, caseStudyMainSection, homePage } = useSharedPageData();
 
   const handleInquiry = () => setShowModal(true);
   const handleCloseModal = () => setShowModal(false);
@@ -99,6 +69,7 @@ export default function SolutionDetailClient({
     details.case_studies_section?.section_description ??
     caseStudyMainSection.home_page?.description ??
     "";
+
 
   return (
     <>
@@ -406,8 +377,7 @@ export default function SolutionDetailClient({
               </div>
               {caseStudyMainSection.home_page?.cta_title && (
                 <div className="rightbar">
-                  <Link
-                    href="/case-study/"
+                  <Link prefetch={false} href="/case-study/"
                     className="trans outline-btn"
                     title={caseStudyMainSection.home_page.cta_title}
                   >
@@ -428,8 +398,7 @@ export default function SolutionDetailClient({
                     className="slider_item"
                     data-slider-card
                   >
-                    <Link
-                      href={`/case-study/${caseStudy.slug}/`}
+                    <Link prefetch={false} href={`/case-study/${caseStudy.slug}/`}
                       className="casestudies_card trans"
                       title={caseStudy.acf?.home_page?.title}
                     >
@@ -518,7 +487,7 @@ export default function SolutionDetailClient({
                   )}
                 </div>
                 <div className="rightbar">
-                  <Link href="/contact/" className="outline-btn trans">
+                  <Link prefetch={false} href="/contact/" className="outline-btn trans">
                     <span className="text_wrap button-content">
                       {homePage.start_project_section?.cta_title ??
                         "Contact Us"}

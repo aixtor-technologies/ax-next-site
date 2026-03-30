@@ -125,7 +125,7 @@ function SectionHeader({
         </div>
         {ctaTitle && ctaHref ? (
           <div className="rightbar">
-            <Link href={ctaHref} className="trans outline-btn">
+            <Link prefetch={false} href={ctaHref} className="trans outline-btn">
               <span className="text_wrap button-content">{ctaTitle}</span>
             </Link>
           </div>
@@ -310,7 +310,7 @@ export default function HomePageClient({
             <HorizontalSlider className="services_slider">
               {filteredServices.map((service) => (
                 <div key={service.id} className="slider_item" data-slider-card>
-                  <Link href={`/services/${service.slug}/`} className="service_card">
+                  <Link prefetch={false} href={`/services/${service.slug}/`} className="service_card">
                     <div className="service_card_body">
                       {service.acf?.home_page_fields?.icon?.url ? (
                         <img
@@ -370,8 +370,7 @@ export default function HomePageClient({
                             <p>{solution.acf.home_page.description}</p>
                           ) : null}
                           <div className="moreInfo">
-                            <Link
-                              href={`/solutions/${solution.slug}/`}
+                            <Link prefetch={false} href={`/solutions/${solution.slug}/`}
                               className="trans link_more"
                             >
                               Know More
@@ -458,7 +457,7 @@ export default function HomePageClient({
                     }`}
                     onMouseEnter={() => setActiveIndustryIndex(index)}
                   >
-                    <Link href={`/industries/${industry.industry_slug}/`}>
+                    <Link prefetch={false} href={`/industries/${industry.industry_slug}/`}>
                       <figure className="industries_card">
                         <div className="imgbox">
                           {industry.icon?.url ? (
@@ -507,8 +506,7 @@ export default function HomePageClient({
                   className="slider_item case_study_item"
                   data-slider-card
                 >
-                  <Link
-                    href={`/case-study/${caseStudy.slug}/`}
+                  <Link prefetch={false} href={`/case-study/${caseStudy.slug}/`}
                     className="casestudies_card trans"
                   >
                     {caseStudy.acf?.home_page?.image?.url ? (
@@ -572,7 +570,7 @@ export default function HomePageClient({
                   </p>
                 </div>
                 <div className="rightbar">
-                  <Link href="/contact/" className="outline-btn trans">
+                  <Link prefetch={false} href="/contact/" className="outline-btn trans">
                     <span className="text_wrap button-content">
                       {homePage.start_project_section?.cta_title || "Contact Us"}
                     </span>

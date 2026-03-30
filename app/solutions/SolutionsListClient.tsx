@@ -188,8 +188,7 @@ export default function SolutionsListClient({
                   data-aos="fade-up"
                   data-aos-duration="15"
                 >
-                  <Link
-                    href={`/solutions/${solution.slug}/`}
+                  <Link prefetch={false} href={`/solutions/${solution.slug}/`}
                     className="service_list_card trans"
                     title={solution.acf?.solution_list_page?.title}
                   >
@@ -247,8 +246,7 @@ export default function SolutionsListClient({
               </div>
               {caseStudyMainSection.home_page?.cta_title ? (
                 <div className="rightbar">
-                  <Link
-                    href="/case-study/"
+                  <Link prefetch={false} href="/case-study/"
                     className="trans outline-btn"
                     title={caseStudyMainSection.home_page.cta_title}
                   >
@@ -268,8 +266,7 @@ export default function SolutionsListClient({
                   className="slider_item"
                   data-slider-card
                 >
-                  <Link
-                    href={`/case-study/${caseStudy.slug}/`}
+                  <Link prefetch={false} href={`/case-study/${caseStudy.slug}/`}
                     className="casestudies_card trans"
                     title={caseStudy.acf?.home_page?.title}
                   >
@@ -356,7 +353,7 @@ export default function SolutionsListClient({
                   ) : null}
                 </div>
                 <div className="rightbar">
-                  <Link href="/contact/" className="outline-btn trans">
+                  <Link prefetch={false} href="/contact/" className="outline-btn trans">
                     <span className="text_wrap button-content">
                       {homePage.start_project_section?.cta_title ??
                         "Contact Us"}

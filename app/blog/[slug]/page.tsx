@@ -1,19 +1,8 @@
 import { notFound } from "next/navigation";
-import {
-  fetchBlogDetail,
-  fetchBlogMainSection,
-  fetchBlogList,
-  safeFetchWordPress,
-} from "@/lib/api";
+import { fetchBlogDetail } from "@/lib/api";
 import BlogDetailClient from "./BlogDetailClient";
 
-import type {
-  BlogDetail,
-  BlogMainSection,
-  BlogListItem,
-  BlogListResponse,
-} from "../blogTypes";
-import type { HomePageStartSection } from "../../case-study/caseStudyTypes";
+import type { BlogDetail } from "../blogTypes";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -22,30 +11,17 @@ type PageProps = {
 export default async function BlogDetailPage({ params }: PageProps) {
   const { slug } = await params;
 
-  const [blogCustomField, blogMainSection, recentListResponse, homePageResponse] =
-    await Promise.all([
-      fetchBlogDetail<BlogDetail>(slug),
-      fetchBlogMainSection<BlogMainSection>(),
-      fetchBlogList<BlogListResponse>(1, 10),
-      safeFetchWordPress<Array<{ acf?: HomePageStartSection }>>("home-page", []),
-    ]);
+  // Only fetch the primary blog data on the server.
+  // Recent blogs, blog main section, and home page data are loaded lazily on the client.
+  const blogCustomField = await fetchBlogDetail<BlogDetail>(slug);
 
   if (!blogCustomField) {
     notFound();
   }
 
-  const homePage = homePageResponse?.[0]?.acf ?? {};
-  const recentBlogList: BlogListItem[] = recentListResponse?.posts ?? [];
-
   return (
     <div className="wrappper">
-      <BlogDetailClient
-        blogCustomField={blogCustomField}
-        blogMainSection={blogMainSection}
-        recentBlogList={recentBlogList}
-        homePage={homePage}
-      />
+      <BlogDetailClient blogCustomField={blogCustomField} />
     </div>
   );
 }
-
