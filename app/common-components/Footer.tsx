@@ -60,6 +60,8 @@ const Footer = () => {
                       src="/assets/images/IndianFlag.png.webp"
                       className="countryFlag"
                       alt="Flag-India"
+                      width={24}
+                      height={24}
                     />
                   <div className="full_address">1305-06, Zion Z1, Sindhu Bhavan Road, Ahmedabad, India – 380054</div>
                 </address>
@@ -68,6 +70,8 @@ const Footer = () => {
                       src="/assets/images/UsFlag.png.webp"
                       className="countryFlag"
                       alt="UsFlag"
+                      width={24}
+                      height={24}
                     />
                   <div className="full_address">Silicon Valley, California - 94542, USA</div>
                 </address>
@@ -78,6 +82,8 @@ const Footer = () => {
                       <img loading="eager"
                           src="/assets/images/Home_icon_Email.svg"
                           alt="Ax Email Icon"
+                          width={24}
+                          height={24}
                         />
                       <a href="mailto:connect@aixtor.com" target="_blank" className="full_address" title="Mail">
                           connect@aixtor.com
@@ -89,6 +95,8 @@ const Footer = () => {
                       <img loading="eager"
                           src="/assets/images/Home_icon_Phone-_call.svg"
                           alt="Ax Phone Icon"
+                          width={24}
+                          height={24}
                         />
                       <a href="tel:+91 7948940009" target="_blank" className="full_address" title="Tel">
                           +91 7948940009
