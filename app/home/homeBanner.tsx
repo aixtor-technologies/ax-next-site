@@ -96,6 +96,7 @@ export default function HomeBanner({ homePage }: HomePageBannerProps) {
       typeSpeed: 100,
       backSpeed: 50,
       loop: true,
+      showCursor: false,
     });
 
     return () => typedInstance.current?.destroy();
@@ -151,7 +152,7 @@ export default function HomeBanner({ homePage }: HomePageBannerProps) {
                   verticalAlign: "top",
                 }}
               >
-                <span ref={typedElement} />
+                <span ref={typedElement} className="typed-text-cursor" />
               </div>
             </h1>
 

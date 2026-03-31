@@ -1380,10 +1380,11 @@ body ::-webkit-scrollbar-thumb:hover {
 }
 
 #footer {
-    display: inline-block;
+    display: block;
     width: 100%;
-    vertical-align: top;
-    padding: 78px 0 45px
+    min-height: 480px;
+    padding: 78px 0 45px;
+    contain: layout style
 }
 
 .footer_logo {
