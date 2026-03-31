@@ -43,9 +43,10 @@ const Header = ({ menu: menuProp = [] }: HeaderProps) => {
   let headerClass = isScrolled ? "white_bg scrolled" : "white_bg";
   console.log("Current pathname:", pathname);
   if (pathname === "/") {
+    console.log("pathname matches root:", pathname);
     headerClass = isScrolled ? "darkHeader" : "clearHeader";
   }
-
+  console.log("Current headerClass:", headerClass);
   if (isSearchBoxVisible) {
     headerClass = "darkHeader";
   }
