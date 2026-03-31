@@ -40,8 +40,8 @@ const Header = ({ menu: menuProp = [] }: HeaderProps) => {
 
   /* ================= HEADER CLASS ================= */
 
-  let headerClass = isScrolled ? "white_bg scrolled" : "clearHeader";
-
+  let headerClass = isScrolled ? "white_bg scrolled" : "white_bg";
+  console.log("Current pathname:", pathname);
   if (pathname === "/") {
     headerClass = isScrolled ? "darkHeader" : "clearHeader";
   }
