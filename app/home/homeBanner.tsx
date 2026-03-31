@@ -124,8 +124,10 @@ export default function HomeBanner({ homePage }: HomePageBannerProps) {
           loop
           muted
           playsInline
-          preload="none"
+          preload="metadata"
           poster="/assets/images/videos/video_poster.png"
+          // @ts-expect-error -- fetchPriority is valid HTML but not yet in React's video types
+          fetchPriority="high"
         >
           <source
             src="https://video.gumlet.io/695d03f7bb9129c029dd40e1/695d0af9bb9129c029ddc184/download.mp4"

@@ -107,14 +107,23 @@ export default async function Home() {
   ]);
 
   return (
-    <HomePageClient
-      homePage={homePageResponse?.[0]?.acf ?? {}}
-      services={servicesResponse ?? []}
-      serviceMainSection={serviceMainResponse?.[0]?.acf ?? {}}
-      solutions={solutionsResponse ?? []}
-      solutionMainSection={solutionMainResponse?.[0]?.acf ?? {}}
-      caseStudies={caseStudiesResponse ?? []}
-      caseStudyMainSection={caseStudyMainResponse?.[0]?.acf ?? {}}
-    />
+    <>
+      <link
+        rel="preload"
+        href="/assets/images/videos/video_poster.png"
+        as="image"
+        fetchPriority="high"
+      />
+      <HomePageClient
+        homePage={homePageResponse?.[0]?.acf ?? {}}
+        services={servicesResponse ?? []}
+        serviceMainSection={serviceMainResponse?.[0]?.acf ?? {}}
+        solutions={solutionsResponse ?? []}
+        solutionMainSection={solutionMainResponse?.[0]?.acf ?? {}}
+        caseStudies={caseStudiesResponse ?? []}
+        caseStudyMainSection={caseStudyMainResponse?.[0]?.acf ?? {}}
+      />
+    </>
   );
 }
+
