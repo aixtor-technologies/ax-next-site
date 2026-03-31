@@ -1,7 +1,9 @@
 import type { ReactNode } from "react";
+import { Suspense } from "react";
 import { safeFetchMenu } from "@/lib/api";
 import Header from "@/app/common-components/Header";
 import Footer from "@/app/common-components/Footer";
+import PageLoader from "@/app/common-components/PageLoader";
 import "./globals.css";
 import "../styles/fonts.css";
 import "../styles/bootstrap.min.css";
@@ -30,6 +32,9 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body>
+        <Suspense fallback={null}>
+          <PageLoader />
+        </Suspense>
         <Header menu={menu} />
         <div className="middle-content">{children}</div>
         <Footer />
