@@ -15,6 +15,7 @@ import "../styles/slick-theme.min.css";
 
 export const metadata = {
   title: "Enterprise Software &amp; Liferay Portal Development Company | Aixtor",
+  nextTitle: "Enterprise Software &amp; Liferay Portal Development Company | Aixtor",
   description: "Aixtor is a trusted enterprise software and Liferay portal development company delivering scalable intranet, customer, partner, and digital experience platforms for global enterprises.",
   icons: {
     icon: "/assets/images/AX-logo.svg",
