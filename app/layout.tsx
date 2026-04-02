@@ -1,9 +1,9 @@
 import type { ReactNode } from "react";
 import { Suspense } from "react";
 import { safeFetchMenu } from "@/lib/api";
-import Header from "@/app/common-components/Header";
-import Footer from "@/app/common-components/Footer";
-import PageLoader from "@/app/common-components/PageLoader";
+import Header from "@/app/components/layout/Header";
+import Footer from "@/app/components/layout/Footer";
+import PageLoader from "@/app/components/layout/PageLoader";
 import "./globals.css";
 import "../styles/fonts.css";
 import "../styles/bootstrap.min.css";
